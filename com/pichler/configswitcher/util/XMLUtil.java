@@ -1,11 +1,10 @@
 package com.pichler.configswitcher.util;
 
 import com.sun.webkit.dom.NodeListImpl;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -28,7 +27,7 @@ public class XMLUtil {
                 .collect(Collectors.toList());
     }
 
-    public static Collection<Element> getElements(NodeList nodeList){
+    public static Collection<Element> getElements(NodeList nodeList) {
         return nodeStream(nodeList)
                 .filter(node -> node instanceof Element)
                 .map(node -> (Element) node)
@@ -38,5 +37,14 @@ public class XMLUtil {
     public static Stream<Node> nodeStream(NodeList nodeList) {
         return IntStream.range(0, nodeList.getLength())
                 .mapToObj(nodeList::item);
+    }
+
+    public static Map<String, String> getAttributes(Element element) {
+        NamedNodeMap attributes = element.getAttributes();
+        return IntStream.range(0, attributes.getLength())
+                .mapToObj(attributes::item)
+                .map(n -> (Attr) n)
+                .filter(LambdaHelper.distinct(Attr::getName))
+                .collect(Collectors.toMap(Attr::getName, Attr::getValue));
     }
 }

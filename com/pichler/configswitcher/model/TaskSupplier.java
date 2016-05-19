@@ -1,5 +1,6 @@
 package com.pichler.configswitcher.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -8,29 +9,18 @@ import java.util.Map;
 public class TaskSupplier {
     private Class<? extends Task> taskClass;
     private String name;
+    private Map<String, String> settings;
 
-    public TaskSupplier(String name, Class<? extends Task> taskClass) {
-        this.name = name;
+    public TaskSupplier(Class<? extends Task> taskClass, String name, Map<String, String> settings) {
         this.taskClass = taskClass;
+        this.name = name;
+        this.settings = settings;
     }
 
-    public Task getTask(Map<String, String> parameters) {
-        Task ret = getTaskInstance();
-
-        if (ret != null) {
-            ret.setParameters(parameters);
-        }
-
-        return ret;
-    }
-
-    private Task getTaskInstance() {
-        try {
-            return taskClass.newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public TaskDraft getTask(Map<String, String> parameters, Map<String, String> overriddenSettings) {
+        Map<String, String> settings = new HashMap<>(this.settings);
+        settings.putAll(overriddenSettings);
+        return new TaskDraft(taskClass, settings, parameters);
     }
 
     public Class<? extends Task> getTaskClass() {

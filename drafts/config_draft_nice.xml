@@ -1,0 +1,28 @@
+<configurator>
+    <tasks>
+        <task name="Test" class="com.pichler.configswitcher.tasks.TestTask"/>
+        <task name="Copy" class="com.pichler.configswitcher.tasks.SimpleCopyTask"/>
+        <task name="Write" class="com.pichler.configswitcher.tasks.WriteTask"/>
+    </tasks>
+    <configs>
+        <config name="Config_1">
+            <Test>
+                <Message>asdf</Message>
+                <Hello>World</Hello>
+            </Test>
+            <Write>
+                <file>test.txt</file>
+                <content>{{CURRENT_TIME}}</content>
+                <processor>
+                    var process = function(content){
+                        return content + "hello world";
+                    }
+
+                    print('JS rocks!');
+                </processor>
+            </Write>
+            <!--<Copy>-->
+            <!--</Copy>-->
+        </config>
+    </configs>
+</configurator>

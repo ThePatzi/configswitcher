@@ -1,7 +1,7 @@
 <configurator>
-  <tasks>
-    <task name="Copy" class="com.pichler.configswitcher.tasks.Copy"/>
-  </tasks>
+  <taskDrafts>
+    <task name="Copy" class="com.pichler.configswitcher.taskDrafts.Copy"/>
+  </taskDrafts>
   <config name="Config 1">
     <Copy>
       <Path>C:\asdf.txt</Path>

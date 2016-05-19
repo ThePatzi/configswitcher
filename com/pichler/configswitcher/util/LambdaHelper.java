@@ -17,9 +17,9 @@ public class LambdaHelper {
 
             if (!map.containsKey(key)) {
                 map.put(key, true);
-                return false;
+                return true;
             }
-            return true;
+            return false;
         };
     }
 }

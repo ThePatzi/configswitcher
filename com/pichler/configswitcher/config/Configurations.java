@@ -1,7 +1,6 @@
 package com.pichler.configswitcher.config;
 
 import com.pichler.configswitcher.model.Configuration;
-import com.pichler.configswitcher.model.Task;
 import com.pichler.configswitcher.model.TaskSupplier;
 
 import java.util.Map;
