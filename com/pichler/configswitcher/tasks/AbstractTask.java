@@ -21,7 +21,19 @@ public abstract class AbstractTask implements Task {
         this.parameters = parameters;
     }
 
-    public String getParameter(String key){
+    public String getParameter(String key) {
         return parameters.get(key);
+    }
+
+    public String getParameter(String key, String defaultValue) {
+        return parameters.getOrDefault(key, defaultValue);
+    }
+
+    public String getSetting(String key) {
+        return settings.get(key);
+    }
+
+    public String getSetting(String key, String defaultValue) {
+        return settings.getOrDefault(key, defaultValue);
     }
 }
