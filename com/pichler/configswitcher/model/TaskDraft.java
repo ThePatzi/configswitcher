@@ -1,16 +1,17 @@
 package com.pichler.configswitcher.model;
 
 import java.util.Map;
+import java.util.function.Supplier;
 
 /**
  * Created by Patrick on 18.05.2016.
  */
 public class TaskDraft {
-    private Map<String, String> parameters;
+    private Map<String, Supplier<String>> parameters;
     private Map<String, String> settings;
     private Class<? extends Task> taskClass;
 
-    public TaskDraft(Class<? extends Task> taskClass, Map<String, String> settings, Map<String, String> parameters) {
+    public TaskDraft(Class<? extends Task> taskClass, Map<String, String> settings, Map<String, Supplier<String>> parameters) {
         this.parameters = parameters;
         this.settings = settings;
         this.taskClass = taskClass;

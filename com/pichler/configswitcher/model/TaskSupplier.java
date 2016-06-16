@@ -2,6 +2,7 @@ package com.pichler.configswitcher.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 /**
  * Created by Patrick on 18.05.2016.
@@ -17,7 +18,7 @@ public class TaskSupplier {
         this.settings = settings;
     }
 
-    public TaskDraft getTask(Map<String, String> parameters, Map<String, String> overriddenSettings) {
+    public TaskDraft getTask(Map<String, Supplier<String>> parameters, Map<String, String> overriddenSettings) {
         Map<String, String> settings = new HashMap<>(this.settings);
         settings.putAll(overriddenSettings);
         return new TaskDraft(taskClass, settings, parameters);

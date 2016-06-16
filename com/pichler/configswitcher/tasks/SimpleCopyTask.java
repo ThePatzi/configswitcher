@@ -35,8 +35,8 @@ public class SimpleCopyTask extends AbstractTask {
 
     @Override
     public void execute() {
-        String from = parameters.get("from");
-        String to = parameters.get("to");
+        String from = getParameter("from");
+        String to = getParameter("to");
 
         if (from == null || to == null) {
             throw new EndExecutionException();
